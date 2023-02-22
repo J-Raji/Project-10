@@ -34,6 +34,10 @@ Web2 172.31.1.20
 
 `sudo vi /etc/nginx/nginx.conf`
 
+[] Create configuration for our reverse proxy setting
+
+`sudo nano /etc/nginx/sites-available/load_balancer.conf`
+
 #insert following configuration into http section
 
  upstream myproject {
@@ -101,4 +105,36 @@ ns-1012.awsdns-62.net.
 
 `sudo systemctl status nginx`
 
+![Record created](./Images/nginx-service.png)
 
+[] Create configuration for our reverse proxy setting
+
+`sudo nano /etc/nginx/sites-available/load_balancer.conf`
+
+upstream web {
+    server 172.31.5.149;
+    server 172.31.1.20 ;
+
+  }
+
+server {
+    listen 80;
+    server_name jlinkhire.top www.jlinkhire.top;
+
+    location / {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_pass http://web;
+    }
+  }
+
+[] Ctrl O,ENter,Ctrl X
+
+[]Run
+
+`sudo rm -f /etc/nginx/sites-enables/default`
+
+[] Check if Nginx is successfully configured
+
+`sudo nginx -t`
+
+![Nginx confirmed](./Images/nginx-okay.png)
