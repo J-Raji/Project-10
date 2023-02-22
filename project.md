@@ -138,3 +138,5 @@ server {
 `sudo nginx -t`
 
 ![Nginx confirmed](./Images/nginx-okay.png)
+
+`cd /etc/nginx/sites-enabled/`
