@@ -1,6 +1,7 @@
 # Load Balancer Solution With Nginx and SSL/TLS
 
 ## Configure Nginx As A Load Balancer
+
 Create an EC2 VM based on Ubuntu Server 20.04 LTS and name it Nginx LB
 
 `ssh -i "NginxLB-Key.pem" ubuntu@ec2-18-231-84-9.sa-east-1.compute.amazonaws.com`
@@ -38,7 +39,7 @@ Web2 172.31.1.20
 
 `sudo nano /etc/nginx/sites-available/load_balancer.conf`
 
-#insert following configuration into http section
+[]insert following configuration into http section
 
  upstream myproject {
     server Web1 weight=5;
@@ -54,11 +55,12 @@ server {
   }
 
 #comment out this line
-#       include /etc/nginx/sites-enabled/*;
+
+[]include /etc/nginx/sites-enabled/*;
 
 ![update configuration file](./Images/conf.png)
 
-##Domain Registration-jlinkhire.top
+[]Domain Registration-jlinkhire.top
 
 ![uDomain MAnager view](./Images/domain-reg.png)
 
@@ -168,3 +170,33 @@ server {
 
 ![python ertbot installed](./Images/python-certbot.png)
 
+[]Reload nginx
+`sudo nginx -t && sudo nginx -s reload`
+
+![nginx reloaded](./Images/nginx-reload.png)
+
+[] Create a certificate for domain
+
+`sudo certbot --nginx -d jlinkhire.top -d www.jlinkhire.top`
+
+-enter valid email address
+-enter
+-read service agreement
+
+[]Make sure snapd service is active and running
+
+`sudo systemctl status snapd`
+
+![systemct1 status](./Images/snapd.png)
+
+[]Request for certificate
+
+`sudo ln -s /snap/bin/certbot /usr/bin/certbot`
+
+`sudo certbot --nginx`
+
+![certificate okay](./Images/https-okay.png)
+
+[]Certificate confirmed
+
+![Security details of site](./Images/cert.png)
