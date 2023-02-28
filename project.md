@@ -162,3 +162,9 @@ server {
 
 ![certbot installed](./Images/certbot.png)
 
+[]Installing a certbot for python
+
+`sudo apt install python3-certbot-nginx -y`
+
+![python ertbot installed](./Images/python-certbot.png)
+
