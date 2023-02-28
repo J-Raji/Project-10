@@ -159,7 +159,7 @@ server {
 
 -On our domain-jlinkhire.top
 
-[]On temrinal, install certbot
+5.On temrinal, install certbot
 `sudo apt install certbot -y`
 
 ![certbot installed](./Images/certbot.png)
@@ -200,3 +200,12 @@ server {
 []Certificate confirmed
 
 ![Security details of site](./Images/cert.png)
+
+6. Setup 
+`sudo certbot renew --dry-run`
+
+![setup dryrun](./Images/dryrun.png)
+
+[] Add the following line
+* */12 * * *   root /usr/bin/certbot renew > /dev/null 2>&1
+
