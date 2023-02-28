@@ -5,7 +5,7 @@ Create an EC2 VM based on Ubuntu Server 20.04 LTS and name it Nginx LB
 
 `ssh -i "NginxLB-Key.pem" ubuntu@ec2-18-231-84-9.sa-east-1.compute.amazonaws.com`
 
-![Unbuntu Instance](./Images/nbinx.png)
+![Ubuntu Instance](./Images/nbinx.png)
 
 -Open Port TCP and HTTPS at 80 and 443 respectively
 
@@ -140,3 +140,25 @@ server {
 ![Nginx confirmed](./Images/nginx-okay.png)
 
 `cd /etc/nginx/sites-enabled/`
+
+[] Link site
+`sudo ln -s ../sites-available/load_balancer.conf .`
+
+[]check
+`ls`
+
+![load_balancer.conf confirmed](./Images/ls.png)
+
+`ll`
+![list files confirmed](./Images/ll.png)
+
+[] Reload Nginx
+`sudo systemctl reload nginx`
+
+-On our domain-jlinkhire.top
+
+[]On temrinal, install certbot
+`sudo apt install certbot -y`
+
+![certbot installed](./Images/certbot.png)
+
